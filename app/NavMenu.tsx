@@ -1,4 +1,4 @@
-import { SignInButton } from '@/components/buttons';
+import { SignInButton, SignOutButton } from '@/components/buttons';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -23,6 +23,9 @@ async function NavMenu({}: NavMenuProps) {
           </li>
           <li>
             <SignInButton />
+          </li>
+          <li>
+            <SignOutButton />
           </li>
         </ul>
       </div>

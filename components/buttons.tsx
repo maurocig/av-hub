@@ -1,25 +1,24 @@
-"use client";
+'use client';
 
-import { signIn, signOut, useSession } from "next-auth/react";
-import Image from "next/image";
+import { signIn, signOut, useSession } from 'next-auth/react';
+import Image from 'next/image';
 
 export function SignInButton() {
   const { data: session, status } = useSession();
 
-  if (status === "loading") {
+  if (status === 'loading') {
     return <>...</>;
   }
 
-  if (status === "authenticated") {
+  if (status === 'authenticated') {
     return (
-      <div className="flex">
+      <div>
         <Image
           alt="Your Name"
-          src={session.user?.image ?? "/img/default-profile.png"}
+          src={session.user?.image ?? '/img/default-profile.png'}
           width={32}
           height={32}
         />
-        <SignOutButton />
       </div>
     );
   }
@@ -28,5 +27,11 @@ export function SignInButton() {
 }
 
 export function SignOutButton() {
-  return <button onClick={() => signOut()}>Sign out</button>;
+  const { data: session, status } = useSession();
+
+  if (status === 'authenticated') {
+    return <button onClick={() => signOut()}>Sign out</button>;
+  }
+
+  return <></>;
 }
